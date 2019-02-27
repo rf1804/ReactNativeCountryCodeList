@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  LayoutAnimation
+  LayoutAnimation,
+  Image
 } from 'react-native';
 import {getAlphabet} from './data'
 import AlphabetListView from 'react-native-alphabetlistview'
@@ -107,6 +108,7 @@ class CountryCodeList extends React.Component {
         <TouchableOpacity
           onPress={()=>{this.props.onClickCell(rowData.item)}}
           style={[styles.cell, this.props.cellStyle, {height: this.props.cellHeight - 0.5}]}>
+          <Image style={[styles.flagImage, this.props.flagImageStyle]} source={{uri: `https://www.countryflags.io/${rowData.item.iso2}/flat/32.png`}}/>
           <Text numberOfLines={1} style={[styles.cellTitle, this.props.cellTitleStyle]}>{rowData.item.name}</Text>
           <Text style={[styles.cellLabel, this.props.cellLabelStyle]}>{rowData.item.code}</Text>
         </TouchableOpacity>
@@ -118,7 +120,6 @@ class CountryCodeList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 63,
     flex: 1
   },
   sectionHeader: {
@@ -148,6 +149,11 @@ const styles = StyleSheet.create({
     opacity: 0.05,
     marginLeft: 20,
     marginRight: 25,
+  },
+  flagImage: {
+    height: 32,
+    width: 32,
+    marginRight: 10
   },
   cellTitle: {
     fontSize: 16,
